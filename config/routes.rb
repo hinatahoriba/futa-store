@@ -14,6 +14,12 @@ Rails.application.routes.draw do
     end
   end
 
+  # 管理者機能
+  namespace :admin do
+    root "dashboard#index"
+  end
+
+
   # PWA関連
   get "up" => "rails/health#show", as: :rails_health_check
   get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
