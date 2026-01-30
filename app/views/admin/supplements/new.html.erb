@@ -1,0 +1,49 @@
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow-sm">
+        <div class="card-header bg-white py-3">
+          <h1 class="h4 mb-0 text-center">在庫補填</h1>
+        </div>
+        <div class="card-body">
+          <div class="mb-4">
+            <h5 class="fw-bold">商品情報</h5>
+            <p class="mb-1">商品名: <strong><%= @item.name %></strong></p>
+            <p class="mb-0">現在の在庫数: 
+              <% stock = @item.stock_quantity %>
+              <strong class="<%= stock > 0 ? 'text-success' : 'text-danger' %>"><%= stock %></strong>
+            </p>
+          </div>
+
+          <hr class="my-4">
+
+          <%= form_with(model: [:admin, @item, @supplement], local: true) do |f| %>
+            <% if @supplement.errors.any? %>
+              <div class="alert alert-danger">
+                <ul class="mb-0">
+                  <% @supplement.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+
+            <div class="mb-3">
+              <%= f.label :quantity, "補填数", class: "form-label fw-bold" %>
+              <div class="input-group">
+                <%= f.number_field :quantity, class: "form-control", placeholder: "数値を入力", min: 1 %>
+                <span class="input-group-text">個</span>
+              </div>
+              <div class="form-text">追加する数を入力してください（総在庫数ではありません）。</div>
+            </div>
+
+            <div class="d-flex justify-content-end gap-2">
+              <%= link_to "キャンセル", admin_items_path, class: "btn btn-secondary" %>
+              <%= f.submit "補填する", class: "btn btn-primary" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

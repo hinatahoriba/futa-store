@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     root "dashboard#index"
     resources :items, only: [:index, :new, :create, :edit, :update] do
       resources :prices, only: [:new, :create]
+      resources :supplements, only: [:new, :create]
     end
   end
 

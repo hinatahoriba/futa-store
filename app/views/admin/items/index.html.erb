@@ -33,6 +33,7 @@
                 </span>
               </td>
               <td class="text-center align-middle">
+                <%= link_to "在庫補填", new_admin_item_supplement_path(item), class: "btn btn-sm btn-outline-success" %>
                 <%= link_to "価格変更", new_admin_item_price_path(item), class: "btn btn-sm btn-outline-primary" %>
                 <%= link_to "編集", edit_admin_item_path(item), class: "btn btn-sm btn-outline-secondary" %>
               </td>
