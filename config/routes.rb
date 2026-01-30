@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :users, only: [] do
     scope module: :users do
       resources :items, only: [:index]
+      resources :purchases, only: [:create]
     end
   end
 

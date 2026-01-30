@@ -72,12 +72,18 @@
 
           <div class="d-grid">
             <% if stock > 0 && item.current_price %>
-              <button class="btn btn-primary-custom text-white" disabled>
-                <i class="bi bi-cart-plus me-1"></i>
-                購入（準備中）
-              </button>
+              <%= form_with url: user_purchases_path(@user), local: true do |f| %>
+                <%= hidden_field_tag :item_id, item.id %>
+                <div class="d-flex gap-2 mb-2">
+                  <%= select_tag :quantity, options_for_select(1..([10, stock].min)), class: "form-select" %>
+                  <%= button_tag type: "submit", class: "btn btn-primary-custom text-white flex-grow-1" do %>
+                    <i class="bi bi-cart-plus me-1"></i>
+                    購入
+                  <% end %>
+                </div>
+              <% end %>
             <% else %>
-              <button class="btn btn-secondary" disabled>
+              <button class="btn btn-secondary w-100" disabled>
                 <i class="bi bi-cart-x me-1"></i>
                 購入不可
               </button>
