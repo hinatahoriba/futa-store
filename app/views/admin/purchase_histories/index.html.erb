@@ -1,12 +1,12 @@
-<div class="container mt-4">
-  <div class="d-flex justify-content-between align-items-center mb-3">
-    <h1>全ユーザー購入履歴</h1>
-  </div>
+<div class="mb-4">
+  <h1 class="h2">購入履歴一覧</h1>
+</div>
 
-  <div class="card shadow-sm">
-    <div class="card-body p-0">
-      <table class="table table-striped table-hover mb-0">
-        <thead class="table-dark">
+<div class="card shadow-sm border-0">
+  <div class="card-body p-0">
+    <div class="table-responsive">
+      <table class="table table-hover mb-0">
+        <thead>
           <tr>
             <th scope="col" class="ps-4">購入日時</th>
             <th scope="col">学生番号</th>
@@ -20,7 +20,7 @@
           <% @purchase_histories.each do |purchase| %>
             <tr>
               <td class="ps-4 align-middle">
-                <%= l purchase.created_at, format: :short %>
+                <%= l purchase.created_at, format: :long %>
               </td>
               <td class="align-middle font-monospace">
                 <%= purchase.user.student_id %>
@@ -34,13 +34,8 @@
               <td class="text-end align-middle">
                 <%= purchase.quantity %>
               </td>
-              <td class="text-end pe-4 align-middle">
-                <%# 購入時の価格を参照（items.priceではない） %>
-                <%= number_to_currency(
-                      purchase.price.price,
-                      unit: "¥",
-                      precision: 0
-                    ) %>
+              <td class="text-end pe-4 align-middle fw-bold text-danger">
+                <%= number_to_currency(purchase.price.price, unit: "¥", precision: 0) %>
               </td>
             </tr>
           <% end %>

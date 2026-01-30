@@ -1,7 +1,66 @@
-<h1>管理者ダッシュボード</h1>
-<div class="list-group mt-3" style="max-width: 400px;">
-  <%= link_to "商品管理", admin_items_path, class: "list-group-item list-group-item-action" %>
-  <%= link_to "ユーザー管理", admin_users_path, class: "list-group-item list-group-item-action" %>
-   <%= link_to "購入履歴", admin_purchase_histories_path, class: "list-group-item list-group-item-action" %>
-   <%= link_to "チャージ履歴", admin_balance_histories_path, class: "list-group-item list-group-item-action" %>
- </div>
+<div class="mb-4">
+  <h1 class="h2">管理者ダッシュボード</h1>
+  <p class="text-muted">システムの稼働状況と管理項目を確認できます。</p>
+</div>
+
+<div class="row g-4">
+  <div class="col-md-3">
+    <div class="card h-100 border-0 shadow-sm">
+      <div class="card-body">
+        <div class="d-flex align-items-center mb-3">
+          <div class="flex-shrink-0 bg-primary bg-opacity-10 p-3 rounded text-primary me-3">
+            <i class="bi bi-box-seam fs-4"></i>
+          </div>
+          <h5 class="card-title mb-0">商品管理</h5>
+        </div>
+        <p class="card-text text-muted small">商品の追加、編集、在庫補填、価格変更を行えます。</p>
+        <%= link_to "一覧を見る", admin_items_path, class: "btn btn-outline-primary btn-sm w-100" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <div class="card h-100 border-0 shadow-sm">
+      <div class="card-body">
+        <div class="d-flex align-items-center mb-3">
+          <div class="flex-shrink-0 bg-success bg-opacity-10 p-3 rounded text-success me-3">
+            <i class="bi bi-people fs-4"></i>
+          </div>
+          <h5 class="card-title mb-0">ユーザー管理</h5>
+        </div>
+        <p class="card-text text-muted small">利用者の学生情報管理やバランス確認が行えます。</p>
+        <%= link_to "一覧を見る", admin_users_path, class: "btn btn-outline-success btn-sm w-100" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <div class="card h-100 border-0 shadow-sm">
+      <div class="card-body">
+        <div class="d-flex align-items-center mb-3">
+          <div class="flex-shrink-0 bg-info bg-opacity-10 p-3 rounded text-info me-3">
+            <i class="bi bi-cart-check fs-4"></i>
+          </div>
+          <h5 class="card-title mb-0">購入履歴</h5>
+        </div>
+        <p class="card-text text-muted small">すべてのユーザーの購入ログを確認できます。</p>
+        <%= link_to "履歴を見る", admin_purchase_histories_path, class: "btn btn-outline-info btn-sm w-100" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <div class="card h-100 border-0 shadow-sm">
+      <div class="card-body">
+        <div class="d-flex align-items-center mb-3">
+          <div class="flex-shrink-0 bg-warning bg-opacity-10 p-3 rounded text-warning me-3">
+            <i class="bi bi-cash-coin fs-4"></i>
+          </div>
+          <h5 class="card-title mb-0">チャージ履歴</h5>
+        </div>
+        <p class="card-text text-muted small">残高チャージの履歴と金額を確認できます。</p>
+        <%= link_to "履歴を見る", admin_balance_histories_path, class: "btn btn-outline-warning btn-sm w-100" %>
+      </div>
+    </div>
+  </div>
+</div>

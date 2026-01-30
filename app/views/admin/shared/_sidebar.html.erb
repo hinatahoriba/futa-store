@@ -1,0 +1,60 @@
+<div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark admin-sidebar" style="width: 280px; min-height: 100vh;">
+  <a href="<%= admin_root_path %>" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+    <i class="bi bi-shield-lock me-2 fs-4"></i>
+    <span class="fs-4 fw-bold">Futa Store Admin</span>
+  </a>
+  <hr>
+  <ul class="nav nav-pills flex-column mb-auto">
+    <li class="nav-item">
+      <%= link_to admin_root_path, class: "nav-link text-white #{'active' if current_page?(admin_root_path)}" do %>
+        <i class="bi bi-speedometer2 me-2"></i>
+        ダッシュボード
+      <% end %>
+    </li>
+    <li>
+      <%= link_to admin_items_path, class: "nav-link text-white #{'active' if controller_name == 'items' || controller_name == 'prices' || controller_name == 'supplements'}" do %>
+        <i class="bi bi-box-seam me-2"></i>
+        商品管理
+      <% end %>
+    </li>
+    <li>
+      <%= link_to admin_users_path, class: "nav-link text-white #{'active' if controller_name == 'users'}" do %>
+        <i class="bi bi-people me-2"></i>
+        ユーザー管理
+      <% end %>
+    </li>
+    <li>
+      <%= link_to admin_purchase_histories_path, class: "nav-link text-white #{'active' if controller_name == 'purchase_histories'}" do %>
+        <i class="bi bi-cart-check me-2"></i>
+        購入履歴
+      <% end %>
+    </li>
+    <li>
+      <%= link_to admin_balance_histories_path, class: "nav-link text-white #{'active' if controller_name == 'balance_histories'}" do %>
+        <i class="bi bi-cash-coin me-2"></i>
+        チャージ履歴
+      <% end %>
+    </li>
+  </ul>
+  <hr>
+  <div class="dropdown">
+    <%= link_to root_path, class: "d-flex align-items-center text-white text-decoration-none" do %>
+      <i class="bi bi-box-arrow-left me-2"></i>
+      <strong>ストアに戻る</strong>
+    <% end %>
+  </div>
+</div>
+
+<style>
+  .admin-sidebar .nav-link {
+    transition: all 0.2s ease;
+    border-radius: 8px;
+    margin-bottom: 4px;
+  }
+  .admin-sidebar .nav-link:hover:not(.active) {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  .admin-sidebar .nav-link.active {
+    background-color: #0d6efd;
+  }
+</style>

@@ -1,18 +1,20 @@
-<div class="container mt-4">
-  <div class="d-flex justify-content-between align-items-center mb-3">
-    <h1>商品一覧</h1>
-    <%= link_to "新規商品登録", new_admin_item_path, class: "btn btn-primary" %>
-  </div>
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h1 class="h2">商品一覧</h1>
+  <%= link_to new_admin_item_path, class: "btn btn-primary" do %>
+    <i class="bi bi-plus-lg me-1"></i> 新規商品登録
+  <% end %>
+</div>
 
-  <div class="card shadow-sm">
-    <div class="card-body p-0">
-      <table class="table table-striped table-hover mb-0">
-        <thead class="table-dark">
+<div class="card shadow-sm border-0">
+  <div class="card-body p-0">
+    <div class="table-responsive">
+      <table class="table table-hover mb-0">
+        <thead>
           <tr>
             <th scope="col" class="ps-4">商品名</th>
             <th scope="col" class="text-end">価格</th>
             <th scope="col" class="text-end">在庫数</th>
-            <th scope="col" class="text-center" style="width: 100px;">アクション</th>
+            <th scope="col" class="text-center" style="min-width: 250px;">アクション</th>
           </tr>
         </thead>
         <tbody>
@@ -33,9 +35,15 @@
                 </span>
               </td>
               <td class="text-center align-middle">
-                <%= link_to "在庫補填", new_admin_item_supplement_path(item), class: "btn btn-sm btn-outline-success" %>
-                <%= link_to "価格変更", new_admin_item_price_path(item), class: "btn btn-sm btn-outline-primary" %>
-                <%= link_to "編集", edit_admin_item_path(item), class: "btn btn-sm btn-outline-secondary" %>
+                <%= link_to new_admin_item_supplement_path(item), class: "btn btn-sm btn-outline-success me-1" do %>
+                  <i class="bi bi-plus-circle me-1"></i>在庫補填
+                <% end %>
+                <%= link_to new_admin_item_price_path(item), class: "btn btn-sm btn-outline-primary me-1" do %>
+                  <i class="bi bi-tag me-1"></i>価格変更
+                <% end %>
+                <%= link_to edit_admin_item_path(item), class: "btn btn-sm btn-outline-secondary" do %>
+                  <i class="bi bi-pencil me-1"></i>編集
+                <% end %>
               </td>
             </tr>
           <% end %>
