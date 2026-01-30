@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     end
     resources :users, only: [:index, :new, :create, :edit, :update]
     resources :purchase_histories, only: [:index]
+    resources :balance_histories, only: [:index]
   end
 
 
