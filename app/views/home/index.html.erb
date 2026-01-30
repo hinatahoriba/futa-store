@@ -1,0 +1,43 @@
+<div class="hero-section">
+  <div class="row justify-content-center">
+    <div class="col-lg-6 col-md-8">
+      <div class="text-center mb-5 animate-fade-in">
+        <div class="mb-4">
+          <i class="bi bi-shop display-1 text-primary"></i>
+        </div>
+        <h1 class="hero-title mb-3">Futa Store</h1>
+        <p class="text-muted fs-5">学生番号を入力してお買い物を始めましょう</p>
+      </div>
+
+      <div class="card card-custom animate-fade-in delay-1">
+        <div class="card-body p-5">
+          <%= form_with url: search_path, method: :post, local: true do |f| %>
+            <div class="mb-4">
+              <label for="student_id" class="form-label fw-semibold mb-2">
+                <i class="bi bi-person-badge me-1"></i>
+                学生番号
+              </label>
+              <%= f.text_field :student_id, 
+                  class: "form-control form-control-lg form-control-custom", 
+                  placeholder: "例：S12345",
+                  required: true,
+                  autofocus: true,
+                  id: "student_id" %>
+            </div>
+            
+            <div class="d-grid">
+              <%= f.submit "ログイン", class: "btn btn-lg btn-primary-custom text-white" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="text-center mt-4 animate-fade-in delay-2">
+        <p class="text-muted small">
+          <i class="bi bi-info-circle me-1"></i>
+          登録済みの学生番号を入力してください
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

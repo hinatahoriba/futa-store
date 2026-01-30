@@ -1,0 +1,97 @@
+<!-- ユーザー残高カード -->
+<div class="row mb-4">
+  <div class="col-12">
+    <div class="balance-card animate-fade-in">
+      <div class="d-flex justify-content-between align-items-center">
+        <div>
+          <p class="mb-1 opacity-75">
+            <i class="bi bi-person-circle me-1"></i>
+            <%= @user.name %> さん
+          </p>
+          <p class="mb-0 small opacity-75">現在の残高</p>
+          <p class="balance-amount mb-0">
+            ¥<%= number_with_delimiter(@user.balance) %>
+          </p>
+        </div>
+        <div class="text-end">
+          <%= link_to root_path, class: "btn btn-outline-light btn-sm" do %>
+            <i class="bi bi-box-arrow-left me-1"></i>
+            ログアウト
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 商品一覧ヘッダー -->
+<div class="d-flex justify-content-between align-items-center mb-4 animate-fade-in delay-1">
+  <h2 class="h4 mb-0 fw-bold">
+    <i class="bi bi-grid-3x3-gap-fill me-2 text-primary"></i>
+    商品一覧
+  </h2>
+  <span class="badge bg-secondary fs-6">
+    <%= @items.count %> 商品
+  </span>
+</div>
+
+<!-- 商品カードグリッド -->
+<div class="row g-4">
+  <% @items.each_with_index do |item, index| %>
+    <div class="col-lg-4 col-md-6">
+      <div class="card card-custom h-100 animate-fade-in delay-<%= (index % 3) + 1 %>">
+        <div class="card-body p-4">
+          <div class="d-flex justify-content-between align-items-start mb-3">
+            <h5 class="card-title fw-bold mb-0"><%= item.name %></h5>
+            <% stock = item.stock_quantity %>
+            <% if stock > 10 %>
+              <span class="stock-badge stock-available">
+                <i class="bi bi-check-circle-fill"></i>
+                在庫 <%= stock %>
+              </span>
+            <% elsif stock > 0 %>
+              <span class="stock-badge stock-low">
+                <i class="bi bi-exclamation-circle-fill"></i>
+                残り <%= stock %>
+              </span>
+            <% else %>
+              <span class="stock-badge stock-out">
+                <i class="bi bi-x-circle-fill"></i>
+                売り切れ
+              </span>
+            <% end %>
+          </div>
+
+          <div class="mb-4">
+            <% if item.current_price %>
+              <span class="price-tag">¥<%= number_with_delimiter(item.current_price.price) %></span>
+            <% else %>
+              <span class="text-muted">価格未設定</span>
+            <% end %>
+          </div>
+
+          <div class="d-grid">
+            <% if stock > 0 && item.current_price %>
+              <button class="btn btn-primary-custom text-white" disabled>
+                <i class="bi bi-cart-plus me-1"></i>
+                購入（準備中）
+              </button>
+            <% else %>
+              <button class="btn btn-secondary" disabled>
+                <i class="bi bi-cart-x me-1"></i>
+                購入不可
+              </button>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<% if @items.empty? %>
+  <div class="text-center py-5 animate-fade-in">
+    <i class="bi bi-box-seam display-1 text-muted"></i>
+    <p class="text-muted mt-3">商品がありません</p>
+  </div>
+<% end %>

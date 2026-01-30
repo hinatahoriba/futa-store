@@ -5,7 +5,7 @@ services:
     ports:
       - 3000:3000
     environment:
-      DATABASE_URL: postgres://postgres:postgres@db:5432/hinatahoriba_development
+      DATABASE_URL: postgres://postgres:postgres@db:5432/futa_store_development
     volumes:
       - .:/app
     depends_on:
@@ -17,7 +17,7 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: hinatahoriba_development
+      POSTGRES_DB: futa_store_development
     volumes:
       - db_data:/var/lib/postgresql/data
 
