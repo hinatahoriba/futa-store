@@ -1,6 +1,7 @@
 <div class="container mt-4">
   <div class="d-flex justify-content-between align-items-center mb-3">
     <h1>商品一覧</h1>
+    <%= link_to "新規商品登録", new_admin_item_path, class: "btn btn-primary" %>
   </div>
 
   <div class="card shadow-sm">
@@ -10,7 +11,8 @@
           <tr>
             <th scope="col" class="ps-4">商品名</th>
             <th scope="col" class="text-end">価格</th>
-            <th scope="col" class="text-end pe-4">在庫数</th>
+            <th scope="col" class="text-end">在庫数</th>
+            <th scope="col" class="text-center" style="width: 100px;">アクション</th>
           </tr>
         </thead>
         <tbody>
@@ -24,11 +26,14 @@
                   <span class="text-muted">-</span>
                 <% end %>
               </td>
-              <td class="text-end pe-4 align-middle">
+              <td class="text-end align-middle">
                 <% stock = item.stock_quantity %>
                 <span class="<%= stock > 0 ? 'text-success' : 'text-danger' %> fw-bold">
                   <%= stock %>
                 </span>
+              </td>
+              <td class="text-center align-middle">
+                <%= link_to "編集", edit_admin_item_path(item), class: "btn btn-sm btn-outline-secondary" %>
               </td>
             </tr>
           <% end %>

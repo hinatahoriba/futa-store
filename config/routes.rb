@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   # 管理者機能
   namespace :admin do
     root "dashboard#index"
-    resources :items, only: [:index]
+    resources :items, only: [:index, :new, :create, :edit, :update]
   end
 
 
