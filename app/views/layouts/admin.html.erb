@@ -21,7 +21,8 @@
     <style>
       body {
         font-family: 'Inter', 'Noto Sans JP', sans-serif;
-        background-color: #f8f9fa;
+        background-color: #ffffff;
+        color: #1a1a1a;
         overflow-x: hidden;
       }
       .admin-wrapper {
@@ -31,22 +32,39 @@
       }
       .admin-content {
         flex-grow: 1;
-        padding: 2rem;
-        background-color: #f8f9fa;
+        padding: 3rem;
+        background-color: #ffffff;
         min-height: 100vh;
       }
       .card {
-        border: none;
-        box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
-        border-radius: 0.75rem;
+        border: 1px solid #f0f0f0;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+        border-radius: 12px;
       }
       .table th {
-        background-color: #f8f9fa;
-        font-weight: 600;
+        background-color: #fafafa;
+        font-weight: 700;
         text-transform: uppercase;
-        font-size: 0.75rem;
-        letter-spacing: 0.025em;
-        color: #6c757d;
+        font-size: 0.7rem;
+        letter-spacing: 0.05em;
+        color: #888;
+        border-bottom: 2px solid #f0f0f0;
+        padding: 1rem;
+      }
+      .table td {
+        padding: 1rem;
+        border-bottom: 1px solid #f8f8f8;
+      }
+      .btn {
+        border-radius: 8px;
+        font-weight: 600;
+      }
+      .btn-primary {
+        background-color: #000000;
+        border: none;
+      }
+      .btn-primary:hover {
+        background-color: #333333;
       }
     </style>
   </head>

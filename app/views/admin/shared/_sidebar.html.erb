@@ -1,60 +1,93 @@
-<div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark admin-sidebar" style="width: 280px; min-height: 100vh;">
-  <a href="<%= admin_root_path %>" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-    <i class="bi bi-shield-lock me-2 fs-4"></i>
-    <span class="fs-4 fw-bold">Futa Store Admin</span>
+<div class="d-flex flex-column flex-shrink-0 p-4 text-white admin-sidebar" style="width: 280px; min-height: 100vh; background-color: #000000; border-right: 1px solid #1a1a1a;">
+  <a href="<%= admin_root_path %>" class="d-flex align-items-center mb-4 me-md-auto text-white text-decoration-none">
+    <div class="bg-white rounded p-1 me-2 d-flex align-items-center justify-content-center" style="width: 32px; height: 32px;">
+      <i class="bi bi-shield-lock text-black fs-5"></i>
+    </div>
+    <span class="fs-5 fw-bold letter-spacing-tight">Store Admin</span>
   </a>
-  <hr>
-  <ul class="nav nav-pills flex-column mb-auto">
-    <li class="nav-item">
-      <%= link_to admin_root_path, class: "nav-link text-white #{'active' if current_page?(admin_root_path)}" do %>
-        <i class="bi bi-speedometer2 me-2"></i>
-        ダッシュボード
+  
+  <div class="mb-4">
+    <small class="text-uppercase text-muted fw-bold" style="font-size: 0.65rem; letter-spacing: 0.1em;">メニュー</small>
+  </div>
+
+  <ul class="nav flex-column mb-auto">
+    <li class="nav-item mb-2">
+      <%= link_to admin_root_path, class: "nav-link text-white d-flex align-items-center #{'active' if current_page?(admin_root_path)}" do %>
+        <i class="bi bi-grid-1x2 me-3"></i>
+        <span>ダッシュボード</span>
       <% end %>
     </li>
-    <li>
-      <%= link_to admin_items_path, class: "nav-link text-white #{'active' if controller_name == 'items' || controller_name == 'prices' || controller_name == 'supplements'}" do %>
-        <i class="bi bi-box-seam me-2"></i>
-        商品管理
+    <li class="nav-item mb-2">
+      <%= link_to admin_items_path, class: "nav-link text-white d-flex align-items-center #{'active' if controller_name == 'items' || controller_name == 'prices' || controller_name == 'supplements'}" do %>
+        <i class="bi bi-box-seam me-3"></i>
+        <span>商品管理</span>
       <% end %>
     </li>
-    <li>
-      <%= link_to admin_users_path, class: "nav-link text-white #{'active' if controller_name == 'users'}" do %>
-        <i class="bi bi-people me-2"></i>
-        ユーザー管理
+    <li class="nav-item mb-2">
+      <%= link_to admin_users_path, class: "nav-link text-white d-flex align-items-center #{'active' if controller_name == 'users'}" do %>
+        <i class="bi bi-people me-3"></i>
+        <span>ユーザー管理</span>
       <% end %>
     </li>
-    <li>
-      <%= link_to admin_purchase_histories_path, class: "nav-link text-white #{'active' if controller_name == 'purchase_histories'}" do %>
-        <i class="bi bi-cart-check me-2"></i>
-        購入履歴
+    <li class="nav-item mb-2">
+      <%= link_to admin_purchase_histories_path, class: "nav-link text-white d-flex align-items-center #{'active' if controller_name == 'purchase_histories'}" do %>
+        <i class="bi bi-receipt me-3"></i>
+        <span>購入履歴</span>
       <% end %>
     </li>
-    <li>
-      <%= link_to admin_balance_histories_path, class: "nav-link text-white #{'active' if controller_name == 'balance_histories'}" do %>
-        <i class="bi bi-cash-coin me-2"></i>
-        チャージ履歴
+    <li class="nav-item mb-2">
+      <%= link_to admin_balance_histories_path, class: "nav-link text-white d-flex align-items-center #{'active' if controller_name == 'balance_histories'}" do %>
+        <i class="bi bi-currency-yen me-3"></i>
+        <span>チャージ履歴</span>
       <% end %>
     </li>
   </ul>
-  <hr>
-  <div class="dropdown">
-    <%= link_to root_path, class: "d-flex align-items-center text-white text-decoration-none" do %>
-      <i class="bi bi-box-arrow-left me-2"></i>
-      <strong>ストアに戻る</strong>
+  
+  <div class="mt-auto pt-4 border-top border-secondary">
+    <%= link_to root_path, class: "d-flex align-items-center text-secondary text-decoration-none hover-white transition" do %>
+      <i class="bi bi-arrow-left-square me-3"></i>
+      <span class="small">ストアに戻る</span>
     <% end %>
   </div>
 </div>
 
 <style>
-  .admin-sidebar .nav-link {
-    transition: all 0.2s ease;
-    border-radius: 8px;
-    margin-bottom: 4px;
+  .admin-sidebar {
+    position: sticky;
+    top: 0;
   }
-  .admin-sidebar .nav-link:hover:not(.active) {
-    background-color: rgba(255, 255, 255, 0.1);
+  .admin-sidebar .nav-link {
+    padding: 0.8rem 1rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.7) !important;
+    border-radius: 10px;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .admin-sidebar .nav-link:hover {
+    color: #ffffff !important;
+    background-color: rgba(255, 255, 255, 0.05);
   }
   .admin-sidebar .nav-link.active {
-    background-color: #0d6efd;
+    color: #ffffff !important;
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+  .admin-sidebar .nav-link i {
+    font-size: 1.1rem;
+    opacity: 0.7;
+  }
+  .admin-sidebar .nav-link.active i {
+    opacity: 1;
+    color: #ffffff;
+  }
+  .letter-spacing-tight {
+    letter-spacing: -0.02em;
+  }
+  .hover-white:hover {
+    color: #ffffff !important;
+  }
+  .transition {
+    transition: all 0.2s ease;
   }
 </style>

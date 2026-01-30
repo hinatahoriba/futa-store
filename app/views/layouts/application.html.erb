@@ -22,140 +22,146 @@
     <style>
       :root {
         --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        --card-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-        --card-hover-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        --accent-color: #667eea;
+        --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        --card-hover-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
       }
       
       body {
         font-family: 'Inter', 'Noto Sans JP', sans-serif;
-        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        background-color: #ffffff;
+        color: #1a1a1a;
         min-height: 100vh;
       }
       
       .navbar-custom {
-        background: var(--primary-gradient);
-        box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
+        background: #000000;
+        border-bottom: 1px solid #e0e0e0;
+        box-shadow: none;
+        padding: 1rem 0;
       }
       
       .navbar-brand {
-        font-weight: 700;
+        font-weight: 800;
         font-size: 1.5rem;
-        letter-spacing: -0.5px;
+        letter-spacing: -0.02em;
+        color: #ffffff !important;
       }
       
       .card-custom {
-        border: none;
-        border-radius: 16px;
+        border: 1px solid #f0f0f0;
+        border-radius: 12px;
         box-shadow: var(--card-shadow);
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        transition: all 0.3s ease;
+        background: #ffffff;
         overflow: hidden;
       }
       
       .card-custom:hover {
-        transform: translateY(-8px);
+        transform: translateY(-4px);
         box-shadow: var(--card-hover-shadow);
+        border-color: #e0e0e0;
       }
       
       .btn-primary-custom {
-        background: var(--primary-gradient);
+        background: #000000;
+        color: #ffffff;
         border: none;
-        border-radius: 12px;
-        padding: 12px 32px;
+        border-radius: 8px;
+        padding: 10px 24px;
         font-weight: 600;
-        transition: all 0.3s ease;
+        transition: all 0.2s ease;
       }
       
       .btn-primary-custom:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        background: #333333;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      }
+      
+      /* Accent elements */
+      .accent-gradient {
+        background: var(--primary-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
       }
       
       .form-control-custom {
-        border-radius: 12px;
-        border: 2px solid #e2e8f0;
-        padding: 12px 20px;
-        transition: all 0.3s ease;
+        border-radius: 8px;
+        border: 1px solid #e0e0e0;
+        padding: 12px 16px;
+        transition: all 0.2s ease;
       }
       
       .form-control-custom:focus {
-        border-color: #667eea;
-        box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+        border-color: #000000;
+        box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.05);
       }
       
       .price-tag {
         font-size: 1.5rem;
         font-weight: 700;
-        color: #667eea;
-      }
-      
-      .stock-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 4px;
-        padding: 6px 12px;
-        border-radius: 20px;
-        font-weight: 600;
-        font-size: 0.875rem;
+        color: #000000;
       }
       
       .stock-available {
-        background: linear-gradient(135deg, #d4fc79 0%, #96e6a1 100%);
-        color: #1a5928;
+        background: #f0fff4;
+        color: #22543d;
+        border: 1px solid #c6f6d5;
       }
       
       .stock-low {
-        background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
-        color: #8b4513;
+        background: #fffaf0;
+        color: #744210;
+        border: 1px solid #feebc8;
       }
       
       .stock-out {
-        background: linear-gradient(135deg, #fecaca 0%, #fca5a5 100%);
-        color: #991b1b;
+        background: #fff5f5;
+        color: #822727;
+        border: 1px solid #fed7d7;
       }
       
       .balance-card {
-        background: var(--primary-gradient);
+        background: #000000;
         border-radius: 16px;
         color: white;
-        padding: 24px;
+        padding: 32px;
       }
       
       .balance-amount {
-        font-size: 2.5rem;
-        font-weight: 700;
+        font-size: 3rem;
+        font-weight: 800;
+        letter-spacing: -0.02em;
       }
       
       .hero-section {
-        padding: 80px 0;
+        padding: 100px 0;
+        text-align: center;
       }
       
       .hero-title {
-        font-size: 3rem;
-        font-weight: 700;
-        background: var(--primary-gradient);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
+        font-size: 4rem;
+        font-weight: 800;
+        color: #000000;
+        letter-spacing: -0.04em;
+        margin-bottom: 1.5rem;
+      }
+      
+      .animate-fade-in {
+        animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
       }
       
       @keyframes fadeInUp {
         from {
           opacity: 0;
-          transform: translateY(30px);
+          transform: translateY(20px);
         }
         to {
           opacity: 1;
           transform: translateY(0);
         }
       }
-      
-      .animate-fade-in {
-        animation: fadeInUp 0.6s ease-out forwards;
-      }
-      
-      .delay-1 { animation-delay: 0.1s; }
-      .delay-2 { animation-delay: 0.2s; }
-      .delay-3 { animation-delay: 0.3s; }
     </style>
   </head>
 
