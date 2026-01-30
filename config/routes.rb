@@ -22,6 +22,7 @@ Rails.application.routes.draw do
       resources :supplements, only: [:new, :create]
     end
     resources :users, only: [:index, :new, :create, :edit, :update]
+    resources :purchase_histories, only: [:index]
   end
 
 
