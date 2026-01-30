@@ -32,12 +32,22 @@
         </div>
       </div>
 
-      <div class="text-center mt-4 animate-fade-in delay-2">
-        <p class="text-muted small">
-          <i class="bi bi-info-circle me-1"></i>
-          登録済みの学生番号を入力してください
-        </p>
+      <div class="text-center mt-5 pt-4 animate-fade-in delay-3">
+        <hr class="w-25 mx-auto mb-4 opacity-10">
+        <%= link_to admin_root_path, class: "text-decoration-none text-muted small hover-black transition d-inline-flex align-items-center" do %>
+          <i class="bi bi-shield-lock me-2"></i>
+          管理者の方はこちら
+        <% end %>
       </div>
     </div>
   </div>
 </div>
+
+<style>
+  .hover-black:hover {
+    color: #000000 !important;
+  }
+  .transition {
+    transition: all 0.2s ease;
+  }
+</style>
