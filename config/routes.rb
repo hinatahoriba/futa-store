@@ -21,6 +21,7 @@ Rails.application.routes.draw do
       resources :prices, only: [:new, :create]
       resources :supplements, only: [:new, :create]
     end
+    resources :users, only: [:index, :new, :create, :edit, :update]
   end
 
 

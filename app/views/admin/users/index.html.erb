@@ -1,0 +1,35 @@
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h1>ユーザー一覧</h1>
+    <%= link_to "新規ユーザー登録", new_admin_user_path, class: "btn btn-primary" %>
+  </div>
+
+  <div class="card shadow-sm">
+    <div class="card-body p-0">
+      <table class="table table-striped table-hover mb-0">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col" class="ps-4">学生番号</th>
+            <th scope="col">氏名</th>
+            <th scope="col" class="text-end">残高</th>
+            <th scope="col" class="text-center" style="width: 100px;">アクション</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+            <tr>
+              <td class="ps-4 align-middle font-monospace"><%= user.student_id %></td>
+              <td class="align-middle fw-bold"><%= user.name %></td>
+              <td class="text-end align-middle">
+                <%= number_to_currency(user.balance, unit: "¥", precision: 0) %>
+              </td>
+              <td class="text-center align-middle">
+                <%= link_to "編集", edit_admin_user_path(user), class: "btn btn-sm btn-outline-secondary" %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

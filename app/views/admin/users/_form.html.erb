@@ -1,0 +1,34 @@
+<%= form_with(model: [:admin, user], local: true) do |f| %>
+  <% if user.errors.any? %>
+    <div class="alert alert-danger">
+      <ul class="mb-0">
+        <% user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= f.label :student_id, "学生番号", class: "form-label fw-bold" %>
+    <%= f.text_field :student_id, class: "form-control", placeholder: "例: 12345678" %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :name, "氏名", class: "form-label fw-bold" %>
+    <%= f.text_field :name, class: "form-control", placeholder: "例: 山田 太郎" %>
+  </div>
+
+  <% unless user.new_record? %>
+    <div class="mb-3">
+      <label class="form-label fw-bold">残高</label>
+      <input type="text" class="form-control" value="<%= number_to_currency(user.balance, unit: "¥", precision: 0) %>" disabled readonly>
+      <div class="form-text">残高は直接編集できません。</div>
+    </div>
+  <% end %>
+
+  <div class="d-flex justify-content-end gap-2">
+    <%= link_to "キャンセル", admin_users_path, class: "btn btn-secondary" %>
+    <%= f.submit user.new_record? ? "登録する" : "更新する", class: "btn btn-primary" %>
+  </div>
+<% end %>

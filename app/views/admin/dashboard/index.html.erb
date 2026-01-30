@@ -1,2 +1,5 @@
 <h1>管理者ダッシュボード</h1>
-<p>ここから商品を管理します。</p>
+<div class="list-group mt-3" style="max-width: 400px;">
+  <%= link_to "商品管理", admin_items_path, class: "list-group-item list-group-item-action" %>
+  <%= link_to "ユーザー管理", admin_users_path, class: "list-group-item list-group-item-action" %>
+</div>
