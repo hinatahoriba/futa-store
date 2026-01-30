@@ -1,0 +1,61 @@
+<div class="row justify-content-center">
+  <div class="col-md-6 col-lg-5">
+    <div class="card card-custom p-4 p-md-5 animate-fade-in">
+      <h1 class="h3 fw-bold mb-4 text-center">残高チャージ</h1>
+
+      <div class="balance-card mb-5 text-center shadow-sm">
+        <div class="opacity-75 mb-1 small fw-bold text-uppercase">現在の残高</div>
+        <div class="balance-amount">
+          <%= number_with_delimiter(@user.balance) %> <span class="fs-4 fw-normal">P</span>
+        </div>
+      </div>
+
+      <!-- チャージフォーム -->
+      <%= form_with url: user_charges_path(@user), local: true, class: "needs-validation" do |f| %>
+        
+        <!-- 金額入力 -->
+        <div class="mb-4">
+          <label class="form-label fw-bold text-secondary small">金額を入力</label>
+          <div class="input-group input-group-lg">
+            <span class="input-group-text bg-light border-end-0 text-muted">¥</span>
+            <%= f.number_field :amount, class: "form-control form-control-custom border-start-0 ps-0", placeholder: "1000", min: 1 %>
+            <button type="submit" class="btn btn-primary-custom ms-2 px-4">
+              入金
+            </button>
+          </div>
+        </div>
+
+        <div class="d-flex align-items-center my-4">
+          <hr class="flex-grow-1 border-secondary opacity-25">
+          <span class="px-3 text-secondary small fw-bold text-uppercase">Quick Charge</span>
+          <hr class="flex-grow-1 border-secondary opacity-25">
+        </div>
+
+        <!-- プリセットボタン -->
+        <div class="d-grid gap-3">
+          <button type="submit" name="preset_amount" value="500" class="btn btn-light btn-lg border fw-bold py-3 card-custom text-primary d-flex justify-content-between align-items-center px-4">
+            <span>500円</span>
+            <i class="bi bi-plus-circle-fill"></i>
+          </button>
+          
+          <button type="submit" name="preset_amount" value="1000" class="btn btn-light btn-lg border fw-bold py-3 card-custom text-primary d-flex justify-content-between align-items-center px-4">
+            <span>1,000円</span>
+            <i class="bi bi-plus-circle-fill"></i>
+          </button>
+          
+          <button type="submit" name="preset_amount" value="3000" class="btn btn-light btn-lg border fw-bold py-3 card-custom text-primary d-flex justify-content-between align-items-center px-4">
+            <span>3,000円</span>
+            <i class="bi bi-plus-circle-fill"></i>
+          </button>
+        </div>
+
+      <% end %>
+
+      <div class="mt-5 text-center">
+        <%= link_to user_items_path(@user), class: "btn btn-link text-decoration-none text-secondary d-inline-flex align-items-center" do %>
+          <i class="bi bi-arrow-left me-1"></i> 商品一覧に戻る
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

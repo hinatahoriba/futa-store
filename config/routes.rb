@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     scope module: :users do
       resources :items, only: [:index]
       resources :purchases, only: [:create]
+      resources :charges, only: [:new, :create]
     end
   end
 
