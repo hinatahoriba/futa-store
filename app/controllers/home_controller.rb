@@ -14,7 +14,7 @@ class HomeController < ApplicationController
       redirect_to user_items_path(user)
     else
       flash.now[:alert] = "学生番号が見つかりません"
-      render :index, status: :unprocessable_entity
+      render :index, status: :not_found
     end
   end
 end
