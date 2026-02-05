@@ -1,34 +1,28 @@
 module Users
   class PurchasesController < ApplicationController
     def create
-      @user = User.find(params[:user_id])
-      @item = Item.find(params[:item_id])
-      quantity = params[:quantity].to_i
-      quantity = 1 if quantity <= 0
+      quantity = [params[:quantity].to_i, 1].max
 
       begin
         ActiveRecord::Base.transaction do
-          # 価格情報の取得 (楽観ロックなどは今回は考慮しないが、最新価格を取得)
+          # 悲観ロックを使用してユーザーとアイテムを取得
+          @user = User.lock.find(params[:user_id])
+          @item = Item.lock.find(params[:item_id])
+
+          # 価格情報の取得
           current_price = @item.current_price
-          unless current_price
-            raise StandardError, "価格情報が見つかりません"
-          end
+          raise StandardError, "価格情報が見つかりません" unless current_price
 
           total_price = current_price.price * quantity
 
           # 在庫確認
-          if @item.stock_quantity < quantity
-            raise StandardError, "在庫が不足しています"
-          end
+          raise StandardError, "在庫が不足しています" if @item.stock_quantity < quantity
 
           # 残高確認
-          if @user.balance < total_price
-            raise StandardError, "残高が不足しています"
-          end
+          raise StandardError, "残高が不足しています" if @user.balance < total_price
 
           # 残高を減らす
-          @user.balance -= total_price
-          @user.save!
+          @user.update!(balance: @user.balance - total_price)
 
           # 支出履歴を作成
           @user.user_balances.create!(
@@ -42,6 +36,9 @@ module Users
             price: current_price,
             quantity: quantity
           )
+
+          # （必要なら）在庫数を減らす処理もここで行う
+          # @item.update!(stock_quantity: @item.stock_quantity - quantity)
         end
 
         flash[:success] = "購入が完了しました"
@@ -49,7 +46,7 @@ module Users
         flash[:alert] = e.message
       end
 
-      redirect_to user_items_path(@user)
+      redirect_to user_items_path(params[:user_id])
     end
   end
 end
